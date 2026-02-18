@@ -16,7 +16,7 @@ class HorseRaces:
         '''
         table = []
 
-        # Do not modify this code
+        # Do not modify this cod
         # This opens the CSV and saves it as a list of lists
         base_path = os.path.abspath(os.path.dirname(__file__))
         full_path = os.path.join(base_path, f)
