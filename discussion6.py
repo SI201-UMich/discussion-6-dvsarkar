@@ -71,7 +71,7 @@ class HorseRaces:
 ###############################################################################
 
     def horse_fastest_race(self, horse):
-        ''''
+        '''
         Given the name of a horse, return its fastest race and time.
         If the horse does not exist, return (None, 999.9)
 
@@ -81,7 +81,7 @@ class HorseRaces:
         Returns:
             tuple of fastest race name and the time
             EXAMPLE: ('Teio Sho', 14.8)
-        ''''
+        '''
         if horse not in self.race_dict:
             return (None, 999.9)
         fastest_race = None
@@ -121,6 +121,11 @@ class HorseRaces:
             A dictionary with each horse and their average time.
             EXAMPLE: {'Gold Ship': 16.5, 'Daiwa Scarlet': 17.2}
         '''
+        average_time = {}
+        for horse, races in self.race_dict.items():
+            total_time = sum(races.values())
+            average_time[horse] = total_time / len(races)
+        return average_time
 
         pass
 
