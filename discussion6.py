@@ -57,7 +57,14 @@ class HorseRaces:
             inner keys are (str) races, inner values are (int) race times
             EXAMPLE: {'Special Week': {'Tenno Sho Fall': 16.5, 'Tenno Sho Spring': 16.3, 'Teio Sho': 17.0}}
         '''
-        pass
+        race_dict = {}
+        headers = table[0]
+        for row in table[1:]:
+            horse_name = row[0]
+            race_dict[horse_name] = {}
+            for i, time in enumerate(row[1:], 1):
+                race_dict[horse_name][headers[i]] = float(time)
+        return race_dict
 
 ###############################################################################
 ##### TASK 2
@@ -75,7 +82,15 @@ class HorseRaces:
             tuple of fastest race name and the time
             EXAMPLE: ('Teio Sho', 14.8)
         '''
-        pass
+        if horse not in self.race_dict:
+            return (None, 999.9)
+        fastest_race = None
+        fastest_time = float('inf')
+        for race, time in self.race_dict[horse].items():
+            if time < fastest_time:
+                fastest_time = time
+                fastest_race = race
+        return (fastest_race, fastest_time)
 
 ###############################################################################
 ##### TASK 3
@@ -89,7 +104,10 @@ class HorseRaces:
             A dictionary of tuples of each horse, with their fastest race and time.
             EXAMPLE: {"Oguri Cap": ("Tenno Sho Fall", 16.6), "Mejiro McQueen": ("Tenno Sho Fall", 16.1)}
         '''
-        pass
+        personal_best = {}
+        for horse in self.race_dict:
+            personal_best[horse] = self.horse_fastest_race(horse)
+        return personal_best
 
 ###############################################################################
 ##### TASK 4
@@ -103,6 +121,7 @@ class HorseRaces:
             A dictionary with each horse and their average time.
             EXAMPLE: {'Gold Ship': 16.5, 'Daiwa Scarlet': 17.2}
         '''
+        
         pass
 
 ###############################################################################
